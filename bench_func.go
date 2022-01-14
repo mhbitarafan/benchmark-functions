@@ -9,7 +9,7 @@ import (
 
 // g is number of goroutines, c is how many function will run in each goroutine
 func BenchFunc(fn func(), g int, c int) {
-	fn_name := GetFunctionName(fn)
+	fn_name := getFunctionName(fn)
 	done := make(chan int, 1)
 	fmt.Printf("%v: ", fn_name)
 	start := time.Now()
@@ -40,6 +40,6 @@ func BenchFunc(fn func(), g int, c int) {
 	fmt.Printf("%v runs per goroutine\n", rpg)
 }
 
-func GetFunctionName(i interface{}) string {
+func getFunctionName(i interface{}) string {
 	return runtime.FuncForPC(reflect.ValueOf(i).Pointer()).Name()
 }
